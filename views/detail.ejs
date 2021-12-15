@@ -34,7 +34,8 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-item nav-link active" href="/"
-            >Home <span class="sr-only">(current)</span></a>
+            >Home <span class="sr-only">(current)</span></a
+          >
           <a class="nav-item nav-link" href="/write">Write</a>
           <a class="nav-item nav-link" href="/list">list</a>
           <a
@@ -48,36 +49,17 @@
       </div>
     </nav>
 
-    <ul class="list-group">
-      <% for (var i = 0; i < posts.length; i++){ %>
-      <li class="list-group-item" data-id="<%=posts[i]._id %>">
-        <a href="/detail/<%=posts[i]._id%>">글번호: <%=posts[i]._id%></a>
-        <h4>할일 제목 : <%= posts[i].title %></h4>
-        <p>할일 마감날짜 : <%= posts[i].date %></p>
-        <button class="delete" data-id="<%=posts[i]._id %>">삭제</button>
-      </li>
-      <% } %>
-    </ul>
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script>
-      $(".delete").click(function (e) {
-        let listNum = e.target.dataset.id;
-        let currentClick = $(this);
-        $.ajax({
-          method: "DELETE",
-          url: "/delete", //요청할 경로
-          data: { _id: listNum }, //요청과 함께 보낼 데이터
-        })
-          .done(function (result) {
-            currentClick.parent("li").fadeOut();
-          })
-          .fail(function (xhr, textStatus, errorThrown) {
-            console.log(message);
-            console.log(xhr, textStatus, errorThrown);
-          });
-      });
-    </script>
+    <div class="container mt-3">
+      <h4 class="text-center">상세페이지</h4>
+      <div class="card" style="width: 100%">
+        <div class="card-body">
+          <h5 class="card-title"><%= data.제목 %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= data.날짜 %></h6>
+          <p class="card-text">임시내용입니다.</p>
+          <a href="#" class="card-link">수정하기</a>
+        </div>
+      </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
